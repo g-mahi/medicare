@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Symptoms</title>
+    <style>
+        body {
+            background-image: url('/static/images/banner-bg.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var symptomInput = document.getElementById("symptom");
+            var symptomList = [
+                "Headache", "Fever", "Allergy", "Insomnia", "Cough", "Heartburn",
+                "Nausea", "Sore Throat", "Back Pain", "Stomach Ache", "Diarrhea",
+                "Dizziness", "Muscle Pain", "Rash", "Anxiety", "Stomach Cramps",
+                "Vomiting", "Respiratory Distress", "Cough", "Sore throat",
+                "Muscle soreness", "Nausea", "Upset stomach", "Migraine", "Fatigue",
+                "Joint Pain", "Indigestion", "Toothache", "Constipation",
+                "Skin Irritation", "Acne", "Arthritis Pain", "Sinus Congestion"
+            ];
+
+            // Populate the datalist with symptoms
+            var symptomDataList = document.getElementById("symptomList");
+            symptomList.forEach(function (symptom) {
+                var option = document.createElement("option");
+                option.value = symptom;
+                symptomDataList.appendChild(option);
+            });
+
+            symptomInput.addEventListener("input", function () {
+                var filter = symptomInput.value.toLowerCase();
+                var filteredSymptoms = symptomList.filter(function (symptom) {
+                    return symptom.toLowerCase().includes(filter);
+                });
+
+                updateSymptomOptions(filteredSymptoms);
+            });
+
+            function updateSymptomOptions(symptoms) {
+                var selectElement = document.getElementById("symptom");
+                selectElement.innerHTML = "<option value=''>Select a symptom</option>"; // Reset to default option
+
+                symptoms.forEach(function (symptom) {
+                    var option = document.createElement("option");
+                    option.value = symptom;
+                    option.text = symptom;
+                    selectElement.appendChild(option);
+                });
+            }
+        });
+    </script>
+</head>
+<body style="background-color: #f0f0f0; text-align: center; padding: 50px; min-height: 100vh;">
+    <div class="content-box">
+        <h1>Enter Symptoms</h1>
+        <form method="POST" action="/recommend_medicine" style="max-width: 300px; margin: 0 auto; margin-bottom: 20px;">
+            <label for="symptom">Symptom:</label>
+            <input type="text" id="symptom" name="symptom" list="symptomList" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <datalist id="symptomList"></datalist>
+            <br>
+            <label for="severity">Severity:</label>
+            <select id="severity" name="severity" required style="width: 108%; padding: 10px; margin-bottom: 10px;">
+                <option value="mild">Mild</option>
+                <option value="moderate">Moderate</option>
+                <option value="severe">Severe</option>
+            </select>
+            <br>
+            <input type="submit" value="Submit Symptom" style="background-color: #5bc0de; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;margin-bottom: 10px;">
+        </form>
+        <a href="/logout" style="text-decoration: none; margin: 10px; background-color: #d9534f; color: white; padding: 10px 20px; border-radius: 5px; margin-bottom: 10px;">Logout</a><br><br>
+        <br>
+        <a href="/profile" style="text-decoration: none; margin: 10px; background-color: #5bc0de; color: white; padding: 10px 20px; border-radius: 5px; margin-bottom: 10px">View My Details</a>
+    </div>
+</body>
+</html>

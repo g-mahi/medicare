@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <!-- Add the reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        body {
+            background-image: url('/static/images/banner-bg.png'); /* Replace 'URL_TO_YOUR_IMAGE' with the actual image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 50px;
+        }
+        /* ... (your existing CSS styles) */
+    </style>
+    
+    <style>
+        body {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        } 
+        .head{
+            color:#ffffff;
+        }
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            text-align: left;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .g-recaptcha {
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #5bc0de;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        a {
+            text-decoration: none;
+            margin: 10px;
+            background-color: #337ab7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="head">Login</h1>
+    <form method="POST" action="/login_validation">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <!-- Add reCAPTCHA widget -->
+        <div class="g-recaptcha" data-sitekey="6LclNLooAAAAAH589aoyKTKyLmLEaMIY8KFiKrUe"></div>
+        <input type="submit" value="Login">
+    </form>
+    <a href="/register">Don't have an account? Register here</a>
+</body>
+</html>

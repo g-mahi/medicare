@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Medicine</title>
+    <style>
+        body {
+            background-image: url('/static/images/banner-bg.png'); /* Replace with the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif; /* Choose an appropriate font-family */
+            color: #ffffff; /* Set text color to white or another contrasting color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .medicine-box {
+            border: 2px solid #ffffff; /* Set border color to white or another contrasting color */
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around; /* Adjust as needed */
+        }
+
+        li {
+            width: 45%; /* Adjust as needed */
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="medicine-box">
+        <h1>Best Recommended Medicine: {{ gname }}</h1>
+        {% if recommended_medicine %}
+            <p>Medicine: {{ recommended_medicine }}</p>
+            <p>Price: {{ price }}</p>
+            {% if side_effects %}
+                <p>Side Effects:</p>
+                <ul>
+                    {% for effect in side_effects[0].split(', ') %}
+                        <li>{{ effect }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% else %}
+            <p>No recommendation found for the given symptoms and severity.</p>
+        {% endif %}
+    </div>
+
+    <div class="medicine-box">
+        <h1>Suggestions</h1>
+        {% if all_medicines %}
+            <ul>
+                {% for medicine in all_medicines %}
+                    <li>{{ medicine[0] }} - Price: {{ medicine[1] }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No medicines available for the given generic name.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

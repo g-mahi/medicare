@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    <style>
+        .head{
+            color:#ffffff;
+        }
+        body {
+            background-image: url('/static/images/banner-bg.png'); /* Replace 'URL_TO_YOUR_IMAGE' with the actual image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+            text-align: center;
+            
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 24px; /* Increase the font size */
+        }
+
+        form {
+            max-width: 400px; /* Increase the width of the form */
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label, input, select {
+            display: block;
+            margin-bottom: 10px; /* Increase the margin between elements */
+            width: 95%;
+        }
+
+        #profilePicture {
+            display: none;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            cursor: pointer;
+            background-image: url('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
+            background-size: cover;
+        }
+
+        .profile-picture:hover {
+            opacity: 0.8;
+        }
+
+        input[type="file"]:hover + .profile-picture {
+            opacity: 0.8;
+        }
+
+        input[type="file"] {
+            cursor: pointer;
+        }
+
+        input[type="file"]::file-selector-button {
+            display: none;
+        }
+
+        input[type="file"]::before {
+            content: 'Select Profile Picture';
+            color: #fff;
+            background-color: #5bc0de;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="file"]:hover::before {
+            background-color: #337ab7;
+        }
+
+        input[type="file"]:active::before {
+            background-color: #1e88e5;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            font-size: 16px; /* Increase the font size for input elements */
+            padding: 10px;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        /* Adjust the width of the select element */
+        select {
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #5bc0de;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px; /* Increase the font size for the submit button */
+        }
+
+        a {
+            text-decoration: none;
+            margin: 15px 0; /* Increase the margin between elements */
+            background-color: #337ab7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 18px; /* Increase the font size for the anchor */
+        }
+    </style>
+</head>
+<body>
+    <h1 class="head">Register</h1>
+    <form method="POST" action="/add_user" enctype="multipart/form-data">
+        <label for="profilePicture" class="profile-picture"></label>
+        <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+        <label for="rname">Name:</label>
+        <input type="text" id="rname" name "rname" required>
+        <label for="rusername">Username:</label>
+        <input type="text" id="rusername" name="rusername" required>
+        <label for="rdob">Date of Birth:</label>
+        <input type="date" id="rdob" name="rdob" required>
+        <label for="rgender">Gender:</label>
+        <select id="rgender" name="rgender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="rpassword">Password:</label>
+        <input type="password" id="rpassword" name="rpassword" required>
+        <label for="Previous Symptoms">Previous Health Conditions:</label>
+        <div>
+            <select name="symptom" id="symptom" multiple>
+                <!-- Options go here -->
+
+                <option value="1">None</option>
+                <option value="2">Allergic to acetaminophen</option>
+                <option value="3">History of ulcers</option>
+                <option value="4">Heart disease</option>
+                <option value="5">Hypertension</option>
+                <option value="6">Allergic to aspirin</option>
+                <option value="7">Severe liver disease</option>
+                <option value="8">Hypersensitivity to melatonin</option>
+                <option value="9">History of substance abuse</option>
+                <option value="10">Allergic to guaifenesin</option>
+                <option value="11">Respiratory disorders</option>
+                <option value="12">Kidney disease</option>
+                <option value="13">Allergic to ranitidine</option>
+                <option value="14">Long-term use</option>
+                <option value="15">Parkinson's disease</option>
+                <option value="16">Allergic to ondansetron</option>
+                <option value="17">Allergic to menthol</option>
+                <option value="18">Allergic to antibiotics</option>
+                <option value="19">Allergic to bismuth</option>
+                <option value="20">Allergic to loperamide</option>
+                <option value="21">Allergic to antihistamines</option>
+                <option value="22">Allergic to creams</option>
+                <option value="23">Fungal skin infections</option>
+                <option value="24">History of liver disease</option>
+                <option value="25">Glaucoma</option>
+                <option value="26">Allergic to eye drops</option>
+                <option value="27">History of eye surgery complications</option>
+                <option value="28">Hypersensitive skin</option>
+                <option value="29">History of sinus surgery complications</option>
+                <option value="30">History of surgery complications</option>
+                <option value="31">Heart arrhythmias</option>
+                <option value="32">Anxiety</option>
+                <option value="33">Hypersensitivity to modafinil</option>
+                <option value="34">Kidney problems</option>
+                <option value="35">Bowel obstruction</option>
+                <option value="36">Allergic to hydrocortisone</option>
+                <option value="37">Allergic to antifungals</option>
+                <option value="38">Allergic to benzoyl peroxide</option>
+                <option value="39">Pregnancy</option>
+                
+            </select>
+        </div><br> 
+        <input type="submit" value="Register">
+    </form>
+    <a href="/login">Already have an account? Login here</a>
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+    <script>
+        new MultiSelectTag('symptom');
+    </script>
+    <script>
+        const profilePictureInput = document.getElementById('profilePicture');
+        const profilePreview = document.querySelector('.profile-picture');
+        profilePictureInput.addEventListener('change', function () {
+            const file = profilePictureInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profilePreview.style.backgroundImage = `url(${e.target.result})`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
