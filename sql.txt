@@ -1,0 +1,176 @@
+CREATE TABLE user_details (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    dob DATE NOT NULL,
+    gender ENUM('male', 'female', 'other') NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    profile_image LONGBLOB
+);
+
+CREATE TABLE user_symptoms (
+    user_symptom_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    symptom_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user_details(user_id),
+    FOREIGN KEY (symptom_id) REFERENCES symptoms(symptom_id)
+);
+
+CREATE TABLE symptoms (
+    symptom_id INT AUTO_INCREMENT PRIMARY KEY,
+    symptom_name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO symptoms (symptom_name) VALUES 
+('None'),
+('Allergic to acetaminophen'),
+('History of ulcers'),
+('Heart disease'),
+('Hypertension'),
+('Allergic to aspirin'),
+('Severe liver disease'),
+('Hypersensitivity to melatonin'),
+('History of substance abuse'),
+('Allergic to guaifenesin'),
+('Respiratory disorders'),
+('Kidney disease'),
+('Allergic to ranitidine'),
+('Long-term use'),
+('Parkinson''s disease'),
+('Allergic to ondansetron'),
+('Allergic to menthol'),
+('Allergic to antibiotics'),
+('Allergic to bismuth'),
+('Allergic to loperamide'),
+('Allergic to antihistamines'),
+('Allergic to creams'),
+('Fungal skin infections'),
+('History of liver disease'),
+('Glaucoma'),
+('Allergic to eye drops'),
+('History of eye surgery complications'),
+('Hypersensitive skin'),
+('History of sinus surgery complications'),
+('History of surgery complications'),
+('Heart arrhythmias'),
+('Anxiety'),
+('Hypersensitivity to modafinil'),
+('Kidney problems'),
+('Bowel obstruction'),
+('Allergic to hydrocortisone'),
+('Allergic to antifungals'),
+('Allergic to benzoyl peroxide'),
+('Pregnancy');
+
+
+-
+
+CREATE TABLE medicine_recommendation (
+  symptom VARCHAR(255) NOT NULL,
+  severity VARCHAR(255) NOT NULL,
+  recommended_medicine_generic_name VARCHAR(255) NOT NULL,
+  Contraindications VARCHAR(512),
+  minimum_age INTEGER NOT NULL,
+  maximum_age INTEGER NOT NULL,
+  side_effects VARCHAR(255) NOT NULL
+);
+
+
+
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Headache', 'Mild', 'Acetaminophen', ' Dizziness, Upset Stomach ', '12.00', '100.00', 'Allergic to acetaminophen');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Headache', 'Moderate', 'Ibuprofen', 'Stomach Pain, Ulcers', '12', '100', 'History of ulcers');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Headache', 'Severe', 'Sumatriptan', 'Drowsiness, Nausea', '18', '100', 'Heart disease, Hypertension');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Fever', 'Mild', 'Aspirin', 'Upset Stomach, Bleeding Risk', '12', '100', 'Allergic to aspirin');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Fever', 'Moderate', 'Ibuprofen', 'Stomach Pain, Ulcers', '12', '100', 'History of ulcers');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Fever', 'Severe', 'Paracetamol', 'Liver Damage, Nausea', '18', '100', 'Severe liver disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Allergy', 'Mild', 'Loratadine', 'Dry Mouth, Drowsiness', '2', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Allergy', 'Moderate', 'Cetirizine', 'Drowsiness, Headache', '6', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Allergy', 'Severe', 'Epinephrine', 'Palpitations, Anxiety', '18', '100', 'Hypertension, Heart disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Insomnia', 'Mild', 'Melatonin', 'Dizziness, Headache', '2', '100', 'Hypersensitivity to melatonin');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Insomnia', 'Moderate', 'Zolpidem', 'Drowsiness, Memory Loss', '18', '100', 'History of substance abuse');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Insomnia', 'Severe', 'Benzodiazepines', 'Drowsiness, Dependency', '18', '100', 'History of substance abuse');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Cough', 'Mild', 'Dextromethorphan', 'Nausea, Dizziness', '6', '100', 'Severe liver disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Cough', 'Moderate', 'Guaifenesin', 'Upset Stomach, Diarrhea', '12', '100', 'Allergic to guaifenesin');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Cough', 'Severe', 'Codeine', 'Drowsiness, Respiratory Depression', '12', '100', 'Respiratory disorders');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Heartburn', 'Mild', 'Antacids', 'Constipation, Diarrhea', '12', '100', 'Kidney disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Heartburn', 'Moderate', 'Ranitidine', 'Diarrhea, Constipation', '12', '100', 'Allergic to ranitidine');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Heartburn', 'Severe', 'Omeprazole', 'Headache, Bone Fractures', '18', '100', 'Long-term use');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Nausea', 'Mild', 'Ginger', 'None', '2', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Nausea', 'Moderate', 'Metoclopramide', 'Drowsiness, Restlessness', '12', '100', 'Parkinson\'s disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Nausea', 'Severe', 'Ondansetron', 'Headache, Constipation', '2', '100', 'Allergic to ondansetron');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sore Throat', 'Mild', 'Lozenges', 'Dry Mouth, Nausea', '3', '100', 'Allergic to menthol');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sore Throat', 'Moderate', 'Cepacol', 'Dizziness, Upset Stomach', '6', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sore Throat', 'Severe', 'Antibiotics', 'Diarrhea, Allergic Reactions', '18', '100', 'Allergic to antibiotics');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Back Pain', 'Mild', 'Acetaminophen', 'Dizziness, Upset Stomach', '12', '100', 'Allergic to acetaminophen');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Back Pain', 'Moderate', 'Ibuprofen', 'Stomach Pain, Ulcers', '12', '100', 'History of ulcers');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Back Pain', 'Severe', 'Opioids', 'Drowsiness, Dependency', '18', '100', 'History of substance abuse');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Stomach Ache', 'Mild', 'Antacids', 'Constipation, Diarrhea', '12', '100', 'Kidney disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Stomach Ache', 'Moderate', 'Pepto-Bismol', 'Black Stools, Constipation', '12', '100', 'Allergic to bismuth');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Stomach Ache', 'Severe', 'Proton Pump Inhibitors', 'Headache, Bone Fractures', '18', '100', 'Long-term use');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Diarrhea', 'Mild', 'Loperamide', 'Constipation, Dizziness', '6', '100', 'Allergic to loperamide');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Diarrhea', 'Moderate', 'Bismuth Subsalicylate', 'Black Stools, Constipation', '12', '100', 'Allergic to bismuth');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Diarrhea', 'Severe', 'Antibiotics', 'Diarrhea, Allergic Reactions', '18', '100', 'Allergic to antibiotics');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Dizziness', 'Mild', 'Hydration', 'None', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Dizziness', 'Moderate', 'Antihistamines', 'Drowsiness, Dry Mouth', '6', '100', 'Allergic to antihistamines');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Dizziness', 'Severe', 'Vestibular Rehabilitation', 'None', '18', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Muscle Pain', 'Mild', 'Acetaminophen', 'Dizziness, Upset Stomach', '12', '100', 'Allergic to acetaminophen');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Muscle Pain', 'Moderate', 'Ibuprofen', 'Stomach Pain, Ulcers', '12', '100', 'History of ulcers');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Muscle Pain', 'Severe', 'Opioids', 'Drowsiness, Dependency', '18', '100', 'History of substance abuse');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Rash', 'Mild', 'Topical Creams', 'Skin Irritation, Allergic Reactions', '0', '100', 'Allergic to creams');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Rash', 'Moderate', 'Antihistamines', 'Drowsiness, Dry Mouth', '6', '100', 'Allergic to antihistamines');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Rash', 'Severe', 'Corticosteroids', 'Skin Thinning, Infections', '18', '100', 'Fungal skin infections');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Anxiety', 'Mild', 'Relaxation Techniques', 'None', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Anxiety', 'Moderate', 'Benzodiazepines', 'Drowsiness, Dependency', '18', '100', 'History of substance abuse');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Anxiety', 'Severe', 'Selective Serotonin Reuptake Inhibitors', 'Nausea, Weight Changes', '18', '100', 'History of liver disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Stomach Cramps', 'Mild', 'Hydration', 'None', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Stomach Cramps', 'Moderate', 'Antispasmodic Medications', 'Drowsiness, Dry Mouth', '18', '100', 'Glaucoma');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Stomach Cramps', 'Severe', 'Opioids', 'Drowsiness, Dependency', '18', '100', 'History of substance abuse');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Vomiting', 'Mild', 'Hydration', 'None', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Vomiting', 'Moderate', 'Ondansetron', 'Headache, Constipation', '2', '100', 'Allergic to ondansetron');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Vomiting', 'Severe', 'Metoclopramide', 'Drowsiness, Restlessness', '12', '100', 'Parkinson\'s disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Respiratory Distress', 'Mild', 'Bronchodilators', 'Tremors, Increased Heart Rate', '18', '100', 'Hypertension');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Respiratory Distress', 'Moderate', 'Inhaler Steroids', 'Throat Irritation, Thrush', '18', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Respiratory Distress', 'Severe', 'Oxygen Therapy', 'Dry or Irritated Nose, Nosebleeds', '18', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sore throat', 'Mild', 'Honey and Lemon', 'None', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sore throat', 'Moderate', 'Steam Inhalation', 'Burning Sensation, Skin Irritation', '0', '100', 'Hypersensitive skin');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sore throat', 'Severe', 'Nasal Surgery', 'Pain, Swelling', '18', '100', 'History of sinus surgery complications');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Muscle soreness', 'Mild', 'Warm Compress', 'Dry Skin, Redness', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Muscle soreness', 'Moderate', 'Antibiotic Eye Drops', 'Burning Sensation, Blurred Vision', '0', '100', 'Allergic to eye drops');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Muscle soreness', 'Severe', 'Eye Surgery', 'Pain, Infection', '18', '100', 'History of eye surgery complications');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Nausea', 'Mild', 'Tea with Ginger', 'None', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Nausea', 'Moderate', 'Antacids', 'Constipation, Diarrhea', '12', '100', 'Kidney disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Nausea', 'Severe', 'Proton Pump Inhibitors', 'Headache, Bone Fractures', '18', '100', 'Long-term use');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Upset stomach', 'Mild', 'Peppermint Oil', 'None', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Upset stomach', 'Moderate', 'Simethicone', 'Bloating, Upset Stomach', '6', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Upset stomach', 'Severe', 'Laparoscopic Surgery', 'Pain, Infection', '18', '100', 'History of surgery complications');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Migraine', 'Mild', 'Acetaminophen', 'Dizziness, Upset Stomach', '12', '100', 'Allergic to acetaminophen');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Migraine', 'Moderate', 'Triptans', 'Nausea, Chest Tightness', '18', '100', 'Heart problems, Hypertension');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Migraine', 'Severe', 'Botox Injections', 'Neck Pain, Muscle Weakness', '18', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Fatigue', 'Mild', 'Caffeine', 'Jitters, Increased Heart Rate', '18', '100', 'Heart arrhythmias, Anxiety');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Fatigue', 'Moderate', 'Modafinil', 'Headache, Nausea', '18', '100', 'Hypersensitivity to modafinil');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Fatigue', 'Severe', 'Prescription Stimulants', 'Insomnia, Increased Blood Pressure', '18', '100', 'History of heart problems');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Joint Pain', 'Mild', 'Acetaminophen', 'Dizziness, Upset Stomach', '12', '100', 'Allergic to acetaminophen');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Joint Pain', 'Moderate', 'Ibuprofen', 'Stomach Pain, Ulcers', '12', '100', 'History of ulcers');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Joint Pain', 'Severe', 'Corticosteroid Injections', 'Pain, Infection', '18', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Indigestion', 'Mild', 'Antacids', 'Constipation, Diarrhea', '12', '100', 'Kidney disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Indigestion', 'Moderate', 'Ranitidine', 'Diarrhea, Constipation', '12', '100', 'Allergic to ranitidine');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Indigestion', 'Severe', 'Omeprazole', 'Headache, Bone Fractures', '18', '100', 'Long-term use');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Toothache', 'Mild', 'Acetaminophen', 'Dizziness, Upset Stomach', '12', '100', 'Allergic to acetaminophen');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Toothache', 'Moderate', 'Ibuprofen', 'Stomach Pain, Ulcers', '12', '100', 'History of ulcers');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Toothache', 'Severe', 'Dental Procedures', 'Pain, Swelling', '18', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Constipation', 'Mild', 'Fiber Supplements', 'Gas, Bloating', '18', '100', 'Allergic to fiber supplements');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Constipation', 'Moderate', 'Over-the-Counter Laxatives', 'Cramps, Diarrhea', '12', '100', 'History of abdominal surgery');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Constipation', 'Severe', 'Prescription Laxatives', 'Diarrhea, Electrolyte Imbalance', '18', '100', 'Kidney problems, Bowel obstruction');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Skin Irritation', 'Mild', 'Topical Hydrocortisone', 'Burning, Itching', '0', '100', 'Allergic to hydrocortisone');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Skin Irritation', 'Moderate', 'Antifungal Creams', 'Redness, Peeling', '0', '100', 'Allergic to antifungals');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Skin Irritation', 'Severe', 'Antibiotics', 'Diarrhea, Allergic Reactions', '18', '100', 'Allergic to antibiotics');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Acne', 'Mild', 'Benzoyl Peroxide', 'Dryness, Peeling', '12', '100', 'Allergic to benzoyl peroxide');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Acne', 'Moderate', 'Topical Retinoids', 'Redness, Flaking', '12', '100', 'Pregnancy');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Acne', 'Severe', 'Oral Antibiotics', 'Diarrhea, Allergic Reactions', '18', '100', 'Allergic to antibiotics');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Arthritis Pain', 'Mild', 'Acetaminophen', 'Dizziness, Upset Stomach', '12', '100', 'Allergic to acetaminophen');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Arthritis Pain', 'Moderate', 'Nonsteroidal Anti-Inflammatory Drugs (NSAIDs)', 'Stomach Pain, Ulcers', '18', '100', 'History of ulcers');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Arthritis Pain', 'Severe', 'Disease-Modifying Antirheumatic Drugs (DMARDs)', 'Nausea, Fatigue', '18', '100', 'Liver problems, Pregnancy');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sinus Congestion', 'Mild', 'Saline Nasal Spray', 'None', '0', '100', 'None');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sinus Congestion', 'Moderate', 'Decongestants', 'Nervousness, Increased Heart Rate', '12', '100', 'Hypertension, Heart disease');
+INSERT INTO medicine_recommendation (symptom, severity, recommended_medicine_generic_name, Contraindications, minimum_age, maximum_age, side_effects) VALUES ('Sinus Congestion', 'Severe', 'Corticosteroid Nasal Spray', 'Throat Irritation, Nosebleeds', '18', '100', 'None');
+
+
